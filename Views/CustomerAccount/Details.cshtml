@@ -1,0 +1,35 @@
+﻿@model BankManagementSystemVersionFinal1.Models.Account
+
+<h1>@Model.AccountId</h1>
+
+<p>Balance: @Model.Balance.ToString("c")</p>
+
+@if (ViewBag.Transactions != null && ViewBag.Transactions.Count > 0)
+{
+    <h2>Transactions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in ViewBag.Transactions)
+            {
+                <tr>
+                    <td>@transaction.TransactionType</td>
+                    <td>@transaction.Date.ToShortDateString()</td>
+                    <td>@transaction.Amount.ToString("c")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h2>Actions</h2>
+<div>
+    <a asp-action="CreateLoan" asp-route-id="@Model.AccountId" class="btn btn-success">Create Loan</a>
+    <a asp-action="CreateTransfer" asp-route-id="@Model.AccountId" class="btn btn-info">Transfer</a>
+</div>
