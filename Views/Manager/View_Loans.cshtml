@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "loans";
+}
+@model List<BankManagementSystemVersionFinal1.Models.Loan>
+<style>
+
+.awaiting-approval {
+    background-color: yellow;
+}
+
+.Accepted {
+    background-color: green;
+}
+
+.refused {
+    background-color: red;
+}
+</style>
+<h1>Loan List</h1>
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Loan ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loan in Model)
+            {
+                <tr class="@(loan.LoanStatus)">
+                    <td>@loan.LoanId</td>
+                    <td>@loan.Amount</td>
+                    <td>@loan.LoanStatus</td>
+                    <td>
+                            <a href="/manager/loans/@loan.LoanId">Detail</a>
+                    </td>
+                </tr>
+                        
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No loan requests are currently available.</p>
+}
+

@@ -1,0 +1,27 @@
+﻿@model List<BankManagementSystemVersionFinal1.Models.Account>
+
+<h1>Accounts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Id</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model)
+        {
+            <tr>
+                <td>@account.AccountId</td>
+                <td>@account.Balance.ToString("c")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@account.AccountId" class="btn btn-primary">Details</a>
+                    <a asp-action="CreateLoan" asp-route-id="@account.AccountId" class="btn btn-success">Create Loan</a>
+                    <a asp-action="CreateTransfer" asp-route-id="@account.AccountId" class="btn btn-info">Transfer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
